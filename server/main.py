@@ -23,6 +23,7 @@ def startup(state: State):
     os.makedirs(workdir, exist_ok=True)
     os.makedirs(os.path.join(workdir, "data"), exist_ok=True)
     os.makedirs(os.path.join(workdir, "config"), exist_ok=True)
+    os.makedirs(os.path.join(workdir, "plugins"), exist_ok=True)
     logging.debug("Checked existence of required folders")
 
     # Setup app state

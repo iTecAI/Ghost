@@ -127,4 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-ghost_data
+server/ghost_data/config/*
+server/ghost_data/data/*

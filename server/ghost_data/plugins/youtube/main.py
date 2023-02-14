@@ -1,0 +1,2 @@
+class YoutubeDownloadManager:
+    pass

@@ -1,0 +1,16 @@
+{
+    "name": "Youtube",
+    "author": "iTecAI",
+    "version": "0.1",
+    "source": "https://github.com/iTecAI/Ghost",
+    "icon": {
+        "family": "md",
+        "name": "MdOnDemandVideo"
+    },
+    "entrypoint": {
+        "file": "main.py",
+        "downloader": "YoutubeDownloadManager"
+    },
+    "filters": [],
+    "requirements": ["pytube"]
+}
