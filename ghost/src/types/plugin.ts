@@ -58,4 +58,5 @@ export type PluginManifest = {
         downloader: string;
     };
     requirements: string[];
+    defaultConfig: any;
 };

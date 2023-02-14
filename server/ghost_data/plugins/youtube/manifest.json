@@ -27,5 +27,6 @@
       "default": ["audio", "video"]
     }
   ],
-  "requirements": ["pytube", "moviepy"]
+  "requirements": ["pytube", "moviepy"],
+  "defaultConfig": {}
 }
