@@ -39,6 +39,12 @@
             "$ref": "#/definitions/PluginFilter"
           }
         },
+        "downloadOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PluginFilter"
+          }
+        },
         "entrypoint": {
           "type": "object",
           "properties": {
@@ -69,6 +75,7 @@
         "author",
         "source",
         "filters",
+        "downloadOptions",
         "entrypoint",
         "requirements"
       ],
@@ -115,24 +122,7 @@
               "type": "string"
             },
             "default": {
-              "type": "object",
-              "properties": {
-                "comparator": {
-                  "type": "string",
-                  "enum": [
-                    "not_equals",
-                    "equals"
-                  ]
-                },
-                "value": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "comparator",
-                "value"
-              ],
-              "additionalProperties": false
+              "type": "string"
             }
           },
           "required": [
@@ -186,7 +176,7 @@
           "properties": {
             "type": {
               "type": "string",
-              "const": "number"
+              "const": "choice"
             },
             "key": {
               "type": "string"
@@ -211,14 +201,26 @@
                 "additionalProperties": false
               }
             },
-            "default": {}
+            "default": {
+              "anyOf": [
+                {},
+                {
+                  "type": "array",
+                  "items": {}
+                }
+              ]
+            },
+            "multiple": {
+              "type": "boolean"
+            }
           },
           "required": [
             "type",
             "key",
             "name",
             "choices",
-            "default"
+            "default",
+            "multiple"
           ],
           "additionalProperties": false
         }

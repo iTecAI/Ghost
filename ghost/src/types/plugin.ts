@@ -17,7 +17,7 @@ type PluginFilter_Text = {
     type: "text";
     key: string;
     name: string;
-    default: { comparator: "not_equals" | "equals"; value: string };
+    default: string;
 };
 
 type PluginFilter_Number = {
@@ -28,11 +28,12 @@ type PluginFilter_Number = {
 };
 
 type PluginFilter_Choice = {
-    type: "number";
+    type: "choice";
     key: string;
     name: string;
     choices: { key: any; display: string }[];
-    default: any;
+    default: any | any[];
+    multiple: boolean;
 };
 
 export type PluginFilter =
@@ -51,6 +52,7 @@ export type PluginManifest = {
     author: string;
     source: string;
     filters: PluginFilter[];
+    downloadOptions: PluginFilter[];
     entrypoint: {
         file: string;
         downloader: string;

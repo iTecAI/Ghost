@@ -1,16 +1,31 @@
 {
-    "name": "Youtube",
-    "author": "iTecAI",
-    "version": "0.1",
-    "source": "https://github.com/iTecAI/Ghost",
-    "icon": {
-        "family": "md",
-        "name": "MdOnDemandVideo"
-    },
-    "entrypoint": {
-        "file": "main.py",
-        "downloader": "YoutubeDownloadManager"
-    },
-    "filters": [],
-    "requirements": ["pytube"]
+  "name": "Youtube",
+  "author": "iTecAI",
+  "version": "0.1",
+  "source": "https://github.com/iTecAI/Ghost",
+  "icon": {
+    "family": "md",
+    "name": "MdOnDemandVideo"
+  },
+  "entrypoint": {
+    "file": "main.py",
+    "downloader": "YoutubeDownloadManager"
+  },
+  "filters": [
+    { "type": "text", "key": "channel", "name": "Channel", "default": "" }
+  ],
+  "downloadOptions": [
+    {
+      "type": "choice",
+      "key": "type",
+      "name": "Download Type",
+      "choices": [
+        { "key": "audio", "display": "Audio" },
+        { "key": "video", "display": "Video" }
+      ],
+      "multiple": false,
+      "default": ["audio", "video"]
+    }
+  ],
+  "requirements": ["pytube", "moviepy"]
 }
