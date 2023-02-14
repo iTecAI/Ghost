@@ -24,3 +24,7 @@ class PluginManifest(TypedDict):
     downloadOptions: list
     entrypoint: PluginEntrypoint
     requirements: list[str]
+
+class SearchModel(TypedDict):
+    query: str
+    filters: dict[str, Any]
