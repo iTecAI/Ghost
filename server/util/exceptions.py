@@ -16,7 +16,7 @@ class ApplicationException(Exception):
         return f"Application Error {self.status_code} : {self.error_code} => {self.error_message}"
 
 def HTTPExceptionHandler(_: Request, exc: Exception) -> Response:
-    if exc.status_code == 500:
+    if getattr(exc, "status_code", 500) == 500:
         logging.exception(str(exc))
     else:
         logging.warning(str(exc))
@@ -32,7 +32,7 @@ def HTTPExceptionHandler(_: Request, exc: Exception) -> Response:
     )
 
 def ApplicationExceptionHandler(_: Request, exc: ApplicationException) -> Response:
-    if exc.status_code == 500:
+    if getattr(exc, "status_code", 500) == 500:
         logging.exception(str(exc))
     else:
         logging.warning(str(exc))

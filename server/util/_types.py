@@ -1,11 +1,14 @@
 from tinydb import TinyDB
 from dataclasses import dataclass
-from typing import TypedDict
+from typing import TypedDict, Any
 
 @dataclass
 class GState:
+    root: str
     cache: TinyDB
     sessions: TinyDB
+    downloads: TinyDB
+    plugins: dict[str, Any]
 
 class PluginEntrypoint(TypedDict):
     file: str
