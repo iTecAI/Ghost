@@ -9,6 +9,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 import * as locEn from "./localization/en.json";
+import { Layout } from "./pages/layout/Layout";
 
 const ThemeContext = createContext<
     ["dark" | "light", (theme: "dark" | "light") => void]
@@ -50,7 +51,9 @@ function App() {
         <Theming>
             <BrowserRouter>
                 <Routes>
-                    <Route index element={<SearchPage />} />
+                    <Route path="/" element={<Layout />}>
+                        <Route path="" element={<SearchPage />} />
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </Theming>

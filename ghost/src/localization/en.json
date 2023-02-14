@@ -1,1 +1,9 @@
-{}
+{
+    "layout": {
+        "search": "Search",
+        "downloads": "Downloads"
+    },
+    "account": {
+        "login": "Sign In"
+    }
+}

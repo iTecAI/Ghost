@@ -16,6 +16,7 @@ dotenv.load_dotenv()
 # Setup logging
 logging.basicConfig(format=LOG_FMT, level=os.getenv("LOG_LEVEL", "INFO"))
 
+
 def load_plugins(state: State):
     logging.info("Loading plugins...")
 
@@ -26,27 +27,43 @@ def load_plugins(state: State):
 
     plugin_directories = os.listdir(os.path.join(state.root, "plugins"))
     for directory in plugin_directories:
-        if os.path.exists(os.path.join(state.root, "plugins", directory, "manifest.json")):
-            with open(os.path.join(state.root, "plugins", directory, "manifest.json"), "r") as f:
+        if os.path.exists(
+            os.path.join(state.root, "plugins", directory, "manifest.json")
+        ):
+            with open(
+                os.path.join(state.root, "plugins", directory, "manifest.json"), "r"
+            ) as f:
                 manifest: PluginManifest = json.load(f)
-            
+
             if manifest["name"] in plugin_config.keys():
                 pconf = plugin_config[manifest["name"]]
             else:
                 pconf = {}
             try:
-                state.plugins[manifest["name"]] = PluginLoad(manifest, pconf, state, directory)
+                state.plugins[manifest["name"]] = PluginLoad(
+                    manifest, pconf, state, directory
+                )
             except:
                 logging.exception(f"Failed to load {manifest['name']} from {directory}")
         else:
-            logging.warning(f"Plugin directory {directory} does not have a manifest.json, skipping")
-            
+            logging.warning(
+                f"Plugin directory {directory} does not have a manifest.json, skipping"
+            )
+
+
 def default_plugin_config(workdir: str):
     cpath = os.path.join(workdir, "config", "plugins.config.json")
     if not os.path.exists(cpath):
         with open(cpath, "w") as f:
             f.write("{}")
-        
+
+
+def default_user_config(workdir: str):
+    cpath = os.path.join(workdir, "config", "users.config.json")
+    if not os.path.exists(cpath):
+        with open(cpath, "w") as f:
+            f.write(json.dumps([{"username": "admin", "password": "admin"}]))
+
 
 def startup(state: State):
     logging.info("Initializing application...")
@@ -64,6 +81,7 @@ def startup(state: State):
 
     # Write default config
     default_plugin_config(workdir)
+    default_user_config(workdir)
 
     # Setup app state
     state.cache = TinyDB(os.path.join(workdir, "data", "cache.json"))
