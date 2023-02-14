@@ -1,2 +1,5 @@
 starlite
 uvicorn
+tinydb
+python-dotenv
+black
